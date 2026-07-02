@@ -1,5 +1,6 @@
 package com.microservices.study.haarlememeerservice.service;
 
+import com.microservices.study.haarlememeerservice.clients.IndServiceClient;
 import com.microservices.study.haarlememeerservice.exception.ResourceNotFoundException;
 import com.microservices.study.haarlememeerservice.model.Individual;
 import com.microservices.study.haarlememeerservice.model.IndividualRequest;
@@ -19,6 +20,8 @@ public class IndividualService {
   private static final Logger log = LoggerFactory.getLogger(IndividualService.class);
 
   private final IndividualRepository individualRepository;
+
+  private final IndServiceClient indServiceClient;
 
   public IndividualResponse saveIndividual(IndividualRequest request) {
 
@@ -41,7 +44,8 @@ public class IndividualService {
   private IndividualResponse map(Individual individual) {
 
     return new IndividualResponse(
-        individual.getId(), individual.getName(), individual.getEmail(), individual.getAddress());
+        individual.getId(), individual.getName(), individual.getEmail(),
+        individual.getAddress(), indServiceClient.getIndDetails(individual.getId()).nationality());
   }
 
   public List<IndividualResponse> getAllIndividuals() {

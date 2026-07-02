@@ -1,7 +1,10 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: haarlememeer-service
-    port: 8081
+
   datasource:
     url: jdbc:postgresql://localhost:5432/haarlememeer_db
     username: admin
