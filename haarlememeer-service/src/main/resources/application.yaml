@@ -16,3 +16,12 @@ spring:
       properties:
         hibernate:
           format_sql: true
+
+logging:
+  level:
+    root: INFO
+    com.microservices.study: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+  file:
+    name: logs/haarlememeer-service.log
