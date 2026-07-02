@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class HaarlememeerServiceApplication {
 
-  public static void main(String[] args) {
+  static void main(String[] args) {
     SpringApplication.run(HaarlememeerServiceApplication.class, args);
   }
 
