@@ -18,16 +18,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Individual
-{
+public class Individual {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
-  @Column(nullable=false)
+  @Column(nullable = false)
   private String name;
 
-  @Column(unique=true)
+  @Column(unique = true)
   private String email;
 
   private String address;

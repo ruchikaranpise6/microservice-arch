@@ -3,6 +3,8 @@ package com.microservices.study.haarlememeerservice.controller;
 import com.microservices.study.haarlememeerservice.model.IndividualRequest;
 import com.microservices.study.haarlememeerservice.model.IndividualResponse;
 import com.microservices.study.haarlememeerservice.service.IndividualService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -21,28 +23,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/individual")
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name = "Individual Controller", description = "Individual CRUD APIs")
 public class IndividualController {
 
   private final IndividualService individualService;
+
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  IndividualResponse createIndividual(@Valid @RequestBody IndividualRequest request){
+  @Operation(
+      summary = "Create a new individual",
+      description = "Creates a new individual with the provided details.")
+  IndividualResponse createIndividual(@Valid @RequestBody IndividualRequest request) {
     log.info("POST /individual - Creating new individual with email: {}", request.email());
     return individualService.saveIndividual(request);
   }
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  List<IndividualResponse> getAllIndividuals(){
+  @Operation(summary = "Get all individuals", description = "Fetches a list of all individuals.")
+  List<IndividualResponse> getAllIndividuals() {
     log.info("GET /individual - Fetching all individuals");
     return individualService.getAllIndividuals();
   }
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  IndividualResponse getIndividualById(@PathVariable UUID id){
+  @Operation(
+      summary = "Get individual by ID",
+      description = "Fetches an individual by their unique ID.")
+  IndividualResponse getIndividualById(@PathVariable UUID id) {
     log.info("GET /individual/{} - Fetching individual by id", id);
     return individualService.getIndividualById(id);
   }
-
 }

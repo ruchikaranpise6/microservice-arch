@@ -25,3 +25,9 @@ logging:
     org.hibernate.SQL: DEBUG
   file:
     name: logs/haarlememeer-service.log
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true

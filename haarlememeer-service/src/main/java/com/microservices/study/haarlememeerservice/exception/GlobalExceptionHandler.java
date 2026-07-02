@@ -13,31 +13,26 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(ResourceNotFoundException.class)
-
-  public ProblemDetail handleNotFoundIndividual(ResourceNotFoundException exception){
-      log.error("Resource not found: {}", exception.getMessage());
-      ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND.value());
-      problemDetail.setTitle("Resource Not Found");
-      problemDetail.setDetail(exception.getMessage());
-      return problemDetail;
+  public ProblemDetail handleNotFoundIndividual(ResourceNotFoundException exception) {
+    log.error("Resource not found: {}", exception.getMessage());
+    ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND.value());
+    problemDetail.setTitle("Resource Not Found");
+    problemDetail.setDetail(exception.getMessage());
+    return problemDetail;
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ProblemDetail handleValidation(
-      MethodArgumentNotValidException ex) {
+  public ProblemDetail handleValidation(MethodArgumentNotValidException ex) {
 
-    String message = ex.getBindingResult()
-        .getFieldErrors()
-        .stream()
-        .map(error ->
-            error.getField() + ": " + error.getDefaultMessage())
-        .findFirst()
-        .orElse("Validation error");
+    String message =
+        ex.getBindingResult().getFieldErrors().stream()
+            .map(error -> error.getField() + ": " + error.getDefaultMessage())
+            .findFirst()
+            .orElse("Validation error");
 
     log.warn("Validation failed: {}", message);
 
-    ProblemDetail problem =
-        ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+    ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
 
     problem.setTitle("Validation Failed");
     problem.setDetail(message);
@@ -46,13 +41,11 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(ConstraintViolationException.class)
-  public ProblemDetail handleConstraintViolation(
-      ConstraintViolationException ex) {
+  public ProblemDetail handleConstraintViolation(ConstraintViolationException ex) {
 
     log.warn("Constraint violation: {}", ex.getMessage());
 
-    ProblemDetail problem =
-        ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+    ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
 
     problem.setTitle("Constraint Violation");
     problem.setDetail(ex.getMessage());
@@ -65,8 +58,7 @@ public class GlobalExceptionHandler {
 
     log.error("Unexpected error occurred", ex);
 
-    ProblemDetail problem =
-        ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+    ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 
     problem.setTitle("Internal Server Error");
     problem.setDetail(ex.getMessage());

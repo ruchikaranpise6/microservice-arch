@@ -9,5 +9,4 @@ public class HaarlememeerServiceApplication {
   public static void main(String[] args) {
     SpringApplication.run(HaarlememeerServiceApplication.class, args);
   }
-
 }
