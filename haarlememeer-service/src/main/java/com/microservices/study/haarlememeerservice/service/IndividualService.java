@@ -44,8 +44,11 @@ public class IndividualService {
   private IndividualResponse map(Individual individual) {
 
     return new IndividualResponse(
-        individual.getId(), individual.getName(), individual.getEmail(),
-        individual.getAddress(), indServiceClient.getIndDetails(individual.getId()).nationality());
+        individual.getId(),
+        individual.getName(),
+        individual.getEmail(),
+        individual.getAddress(),
+        indServiceClient.getIndDetails(individual.getId()).nationality());
   }
 
   public List<IndividualResponse> getAllIndividuals() {

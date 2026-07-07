@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class HaarlememeerServiceApplication {
 
-  static void main(String[] args) {
+  public static void main(String[] args) {
     SpringApplication.run(HaarlememeerServiceApplication.class, args);
   }
 
   @Bean
   CommandLineRunner testFlyway(DataSource dataSource) {
-    return _ -> log.info("DB Connected: {}", dataSource.getConnection().getMetaData().getURL());
+    return arg -> log.info("DB Connected: {}", dataSource.getConnection().getMetaData().getURL());
   }
 }

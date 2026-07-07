@@ -12,7 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-// Use lowercase table name to match Flyway migration (Postgres folds unquoted identifiers to lower-case)
+// Use lowercase table name to match Flyway migration (Postgres folds unquoted identifiers to
+// lower-case)
 @Table(name = "individual")
 @Data
 @Builder

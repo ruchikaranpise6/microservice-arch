@@ -16,5 +16,4 @@ public class RestClientConfig {
     RestClient.Builder builder = builderProvider.getIfAvailable(RestClient::builder);
     return builder.build();
   }
-
 }

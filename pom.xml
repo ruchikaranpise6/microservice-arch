@@ -31,6 +31,8 @@
   <modules>
     <module>haarlememeer-service</module>
     <module>ind-service</module>
+    <module>api-gateway</module>
+    <module>service-registry</module>
   </modules>
 
   <properties>

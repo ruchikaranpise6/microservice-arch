@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: haarlememeer-service
+              uri: http://127.0.0.1:8081
+              predicates:
+                - Path=/individual,/individual/**
+
+            - id: ind-service
+              uri: http://127.0.0.1:8082
+              predicates:
+              - Path=/ind/**
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    reactor.netty: DEBUG

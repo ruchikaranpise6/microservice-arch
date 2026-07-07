@@ -12,8 +12,10 @@ public class IndServiceClient {
   private final RestClient restClient;
 
   public IndDetails getIndDetails(UUID id) {
-    return restClient.get()
+    return restClient
+        .get()
         .uri("http://localhost:8082/ind/{id}", id)
         .retrieve()
         .body(IndDetails.class);
-}}
+  }
+}
