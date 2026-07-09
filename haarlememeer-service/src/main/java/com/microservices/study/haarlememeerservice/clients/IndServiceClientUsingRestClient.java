@@ -7,7 +7,7 @@ import org.springframework.web.client.RestClient;
 
 @Service
 @RequiredArgsConstructor
-public class IndServiceClient {
+public class IndServiceClientUsingRestClient {
 
   private final RestClient restClient;
 

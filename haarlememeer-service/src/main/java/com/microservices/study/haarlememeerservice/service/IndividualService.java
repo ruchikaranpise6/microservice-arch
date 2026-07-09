@@ -1,6 +1,7 @@
 package com.microservices.study.haarlememeerservice.service;
 
-import com.microservices.study.haarlememeerservice.clients.IndServiceClient;
+import com.microservices.study.haarlememeerservice.clients.IndServiceClientUsingRestClient;
+import com.microservices.study.haarlememeerservice.clients.IndServiceUsingFeignClient;
 import com.microservices.study.haarlememeerservice.exception.ResourceNotFoundException;
 import com.microservices.study.haarlememeerservice.model.Individual;
 import com.microservices.study.haarlememeerservice.model.IndividualRequest;
@@ -21,7 +22,9 @@ public class IndividualService {
 
   private final IndividualRepository individualRepository;
 
-  private final IndServiceClient indServiceClient;
+  //private final IndServiceClientUsingRestClient indServiceClientUsingRestClient;
+
+  private final IndServiceUsingFeignClient indServiceUsingFeignClient;
 
   public IndividualResponse saveIndividual(IndividualRequest request) {
 
@@ -48,7 +51,7 @@ public class IndividualService {
         individual.getName(),
         individual.getEmail(),
         individual.getAddress(),
-        indServiceClient.getIndDetails(individual.getId()).nationality());
+        indServiceUsingFeignClient.getIndDetails(individual.getId()).nationality());
   }
 
   public List<IndividualResponse> getAllIndividuals() {

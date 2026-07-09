@@ -20,6 +20,12 @@ spring:
               predicates:
               - Path=/ind/**
 
+  security:
+      oauth2:
+        resourceserver:
+          jwt:
+            issuer-uri: http://localhost:9090/realms/Harlememeer
+
 management:
   endpoint:
     gateway:
